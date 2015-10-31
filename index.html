@@ -4,31 +4,45 @@
 	  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
   	  <link rel="stylesheet" href="styles/main.css">
   	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-  	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>  
+  	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.js"></script>  
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-route.js"></script>
+	  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular-resource.min.js">
+
 	  <script src="scripts/script.js"></script>
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	  <meta charset="UTF-8">
   </head>
-  <body>
-    <div ng-controller="FormCtrl">
-      <form class="form-horizontal" name="payForm" novalidate>
-         <div class="form-group">
-  	   <label for="name">Name:</label>
-	   <input type="text" name="name" id="name" class="form-control" ng-model="name" required ng-minlength="1">
-         </div>
-         <div class="form-group" ng-class="{'has-error':payForm.email.$invalid}">
-           <label for="email">Email:</label>
-           <input type="email" name="email" id="email" class="form-control" ng-model="email">
-         </div>
-         <div class="form-group">
-           <label for="zip">Zip:</label>
-     	   <input type="text" name="zip" id="zip" class="form-control" ng-model="zip">
-         </div>
-         <div class="form-group">
-	   <label for="credit">Credit Card Number:</label>
-	   <input type="text" name="credit" id="credit" class="form-control" ng-model="credit">
-         </div>
-         <button type="submit" class="btn btn-primary" ng-submit="submitForm()">Submit</button>
-       </form>
-    </div>
+  <body ng-app="FindTranslatorApp">
+	  <div data-ng-view></div> 
+	  <script>
+'use strict';
+
+var FindTranslatorApp = angular.module('FindTranslatorApp', ['ngRoute']);
+FindTranslatorApp.config(['$routeProvider', function ($routeProvider){
+	$routeProvider
+	  .when('/',{
+		    controller: 'LoginCtrl',
+		    templateUrl: 'login.html'
+	  })
+	  .when('/find',{
+		    controller: 'FindCtrl',
+	            templateUrl: 'find.html'
+	  })
+	  .otherwise({ redirectTo: '/' });
+}]);
+
+FindTranslatorApp.controller('LoginCtrl', ['$scope', function($scope) { 
+  $scope.submitForm = function(form){
+    if(form.$valid) {
+      alert("Payment info has been submitted!");
+    }
+    else {
+      alert("There was an error submitting your payment. Please check that your information is correct.");
+    }
+  }	    
+}]);
+
+	   	 
+	  </script>
   </body>
 </html>
