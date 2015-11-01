@@ -1,11 +1,11 @@
-    <div ng-controller="LoginCtrl" class="container">
-      <form class="form-horizontal" name="loginForm" novalidate>
+    <div class="container">
+      <form class="form-horizontal" name="loginForm" ng-submit="submitForm()"  novalidate>
          <div class="form-group">
   	   <label for="name">Username:</label>
 	   <input type="text" name="name" id="name" class="form-control" ng-model="name" required ng-minlength="3">
-           <p ng-show="payForm.name.$invalid" class="help-block">Username must be at least 3 letters</p>
+           <p ng-show="loginForm.name.$invalid" class="help-block">Username must be at least 3 letters</p>
 	 </div>
-         <div class="form-group" ng-class="{'has-error':payForm.email.$invalid}">
+         <div class="form-group" ng-class="{'has-error':loginForm.email.$invalid}">
            <label for="email">Email:</label>
            <input type="email" name="email" id="email" class="form-control" ng-model="email">
          </div>
@@ -21,7 +21,7 @@
 	   <input type="checkbox" name="translator" id="translator" ng-model="translator" class="checkbox-inline checkbox-primary">
 	   <label for="translator">I want to be a translator</label> 
 	 </div>
-	 <button type="submit" class="btn btn-primary" ng-submit="submitForm()">Submit</button>
+	 <button type="submit" class="btn btn-primary" ng-disabled="loginForm.$invalid">Submit</button>
        </form>
     </div>
 
