@@ -8,9 +8,9 @@
           <span class="icon-bar"></span>
  	  <span class="icon-bar"></span>  
 	</button>
-	<a class="navbar-brand" href="#">BootstrapBay</a> 
+	<a class="navbar-brand" href="#">Find a Translator</a> 
       </div>
-      <div class="navbar-collapse">
+      <div class="collapse navbar-collapse">
         <ul class="nav navbar-nav nav-center" style="margin:0 auto;display:inline;float:none">
 	  <li class="active"><a href="#/find">Search</a></li>
 	  <li><a href="#/find">Friends</a></li>
@@ -20,16 +20,21 @@
       </div>
     </div>
   </div>
-  <form name="findForm">
-  <div id="search" class='form-group'>
+  <form name="findForm" id="findForm">
+  <div class='form-group'>
     <input type="text" name="language1" id="language1" class="form-control" placeholder="Language 1" ng-model="language1"> 
+  </div>
+  <div class="form-group">
     <input type="text" name="language2" id="language2" class="form-control" placeholder="Language 2" ng-model="language2">
+  </div>
+  <div class="form-group">
     <button type="submit" class="btn btn-primary" ng-click="getTranslators()">Find translators!</button>
+  </div>
   </div>
   </form>
   <div id="results" ng-if="translators">
     <ul>
-      <li ng-repeat="translator in translators">{{translator.name}} | {{translator.location}} | <a href="#/find">call</a> <a href="chat"> <a href="friend"></li>
+	    <li ng-repeat="translator in translators">{{translator.name}} | {{translator.location}} | <a href="#/find"><div class="glyphicon glyphicon-phone-alt"></div></a> <a href="#/find"><div class="glyphicon glyphicon-envelope"></div></a><a href="#/find"><div class="glyphicon glyphicon-user"></div></a></li>
     </ul>
   </div>
 </div>
